@@ -14,7 +14,7 @@ export const useGetRestaurants = async () => {
       const newRestaurants = restaurants.map((restaurant) => {
         return {
           ...restaurant,
-          image: urlFor(restaurant.image.asset._ref).url(),
+          image: urlFor(restaurant.image).url(),
         };
       });
 

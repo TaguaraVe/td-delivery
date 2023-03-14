@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     marginRight: 10,
     backgroundColor: COLORS.primary,
-    borderRadius: 20,
+    borderRadius: 10,
   },
   image: {
     width: 75,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     bottom: 5,
     left: 5,
     color: COLORS.primary,
-    fontWeight: '600',
+    fontWeight: '700',
   },
   wrapperPressed: {
     opacity: 0.5,

@@ -26,22 +26,15 @@ export const Categories = () => {
   return (
     <View style={styles.categoryCard}>
       {isLoading && (
-        <>
-          <Image
-            source={{ uri: restaurants[0].image }}
-            style={{ width: 100, height: 100 }}
-          />
-          <Text>{restaurants[0].name}</Text>
-          <FlatList
-            data={categories}
-            renderItem={({ item }) => (
-              <CategoryCard image={item.image} name={item.name} />
-            )}
-            keyExtractor={(item) => item._id}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-          />
-        </>
+        <FlatList
+          data={categories}
+          renderItem={({ item }) => (
+            <CategoryCard image={item.image} name={item.name} />
+          )}
+          keyExtractor={(item) => item._id}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        />
       )}
     </View>
   );

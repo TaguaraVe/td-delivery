@@ -12,7 +12,7 @@ export const useGetCategories = async () => {
         return {
           _id: category._id,
           name: category.name,
-          image: urlFor(category.image.asset._ref).url(),
+          image: urlFor(category.image).url(),
         };
       });
 

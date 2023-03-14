@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../../constants';
 
@@ -12,11 +13,12 @@ export const RestaurantCard = ({
   rating,
   genre,
   address,
-  short_description,
+  short_desc,
   dishes,
   location,
 }) => {
   const [pressed, setPressed] = useState(false);
+  const navigation = useNavigation();
 
   const handlePressIn = () => {
     setPressed(true);
@@ -24,11 +26,25 @@ export const RestaurantCard = ({
   const handlePressOut = () => {
     setPressed(false);
   };
+  const handlePress = () => {
+    navigation.navigate('RestaurantDetail', {
+      id,
+      imageUrl,
+      name,
+      rating,
+      genre,
+      address,
+      short_desc,
+      dishes,
+      location,
+    });
+  };
 
   return (
     <Pressable
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
+      onPress={() => handlePress()}
       style={[styles.card, styles.wrapper, pressed && styles.wrapperPressed]}
     >
       <Image source={{ uri: imageUrl }} style={styles.image} />
@@ -36,10 +52,10 @@ export const RestaurantCard = ({
         <Text style={[styles.name]}>{name}</Text>
         <View style={styles.row}>
           <Text style={styles.rating}>
-            Rating: <StarRating rating={rating} /> &#8213;{' '}
-            <Text style={styles.text}>{genre}</Text>
+            Rating: <StarRating rating={rating} />
           </Text>
         </View>
+        <Text style={styles.text}>Categoria: {genre}</Text>
         <View style={styles.row}>
           <Ionicons name="location" size={18} color="black" />
           <Text style={styles.text}>Cerca &#8226; {address}</Text>
@@ -57,6 +73,7 @@ const styles = StyleSheet.create({
   image: {
     width: 220,
     aspectRatio: 3 / 2,
+    borderRadius: 10,
   },
   row: {
     flexDirection: 'row',
@@ -71,6 +88,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: COLORS.gray,
+    fontWeight: '600',
   },
   wrapper: {
     opacity: 1,
